@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <None Include="appsettings.example.json" />
-    <None Include="appsettings.json">
+    <None Include="appsettings.json" Condition="Exists('appsettings.json')">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Compile Include="UserMessageCount.fs" />
