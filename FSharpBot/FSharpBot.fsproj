@@ -16,8 +16,6 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
 
-  <ItemGroup />
-
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="5.0.21" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.7" />
