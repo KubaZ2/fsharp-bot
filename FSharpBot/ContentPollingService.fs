@@ -42,7 +42,7 @@ type Update =
 type DBTopic =
     { TopicKey: string
       ThreadId: int64
-      Updates: System.Collections.Generic.List<string> (* LiteDB doesn't handle FSharpList`1 correctly *) }
+      Updates: ResizeArray<string> (* LiteDB doesn't handle FSharpList`1 correctly *) }
 
 type RedditAuth =
     { Token: string
@@ -510,7 +510,7 @@ type ContentUpdater(logger: ILogger, config: ContentPollingConfiguration, databa
                             let dbTopic =
                                 { TopicKey = topicKey
                                   ThreadId = int64 thread.Id
-                                  Updates = System.Collections.Generic.List([ update.Id ]) }
+                                  Updates = ResizeArray([| update.Id |]) }
 
                             topicCollection.Insert(topicKey, dbTopic) |> ignore
 
