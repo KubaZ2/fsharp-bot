@@ -25,7 +25,6 @@ type ContentPollingConfiguration() =
     member val ForumChannelId: uint64 = 0uL with get, set
     member val RedditTagId: uint64 = 0uL with get, set
     member val DiscourseTagId: uint64 = 0uL with get, set
-    member val GuildId: uint64 = 0uL with get, set
 
 type Configuration() =
     member val ActivityRoles: IReadOnlyList<ActivityRole> = [] with get, set
