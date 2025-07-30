@@ -3,5 +3,6 @@
 open LiteDB
 
 type UserMessageCount =
-    { [<BsonId>] UserId: int64
+    { [<BsonId>]
+      UserId: int64
       mutable Count: int }
