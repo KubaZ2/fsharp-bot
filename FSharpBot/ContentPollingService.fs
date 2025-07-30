@@ -504,9 +504,7 @@ type ContentUpdater(logger: ILogger, config: ContentPollingConfiguration, databa
                             do! Task.Delay(1000) // Wait for the thread to be fully created
 
                             for embed in embeds |> List.skip 1 do
-                                let messageProps = MessageProperties()
-                                messageProps.Embeds <- [| embed |]
-                                let! _ = thread.SendMessageAsync(messageProps)
+                                let! _ = thread.SendMessageAsync(MessageProperties(Embeds = [| embed |]))
                                 ()
 
                             let dbTopic =
@@ -524,8 +522,12 @@ type ContentUpdater(logger: ILogger, config: ContentPollingConfiguration, databa
 
                         | Some topic when not (topic.Updates |> List.ofSeq |> List.contains update.Id) ->
                             for embed in embeds do
-                                let messageProps = MessageProperties(Embeds = [| embed |])
-                                let! _ = client.SendMessageAsync(uint64 topic.ThreadId, messageProps)
+                                let! _ =
+                                    client.SendMessageAsync(
+                                        uint64 topic.ThreadId,
+                                        MessageProperties(Embeds = [| embed |])
+                                    )
+
                                 ()
 
                             let updatedTopic =
